@@ -220,6 +220,8 @@ function generarPDF(){
   doc.setFontSize(7);doc.setFont('helvetica','normal');doc.setTextColor(160,160,150);
   doc.text('Clínica Angelman México  |  Este documento forma parte del expediente clínico y debe resguardarse conforme a la normativa aplicable.',W/2,290,{align:'center'});
   const archivo = `consulta_${nombre.replace(/[^a-zA-Z0-9]/g,'_')}_${fechaConsulta}.pdf`;
+  // PDF listo en Base64 para adjuntarlo en EmailJS como Variable Attachment.
+  const pdfBase64 = doc.output('datauristring').split(',')[1];
   doc.save(archivo);
   
   // ── Enviar resumen por correo vía EmailJS ──────────────────
